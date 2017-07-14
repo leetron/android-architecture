@@ -1,9 +1,7 @@
-package tisoul.dev.androidarchitecture.presentation.welcome;
+package tisoul.dev.androidarchitecture;
 
 import android.app.Activity;
 import android.os.Bundle;
-
-import tisoul.dev.androidarchitecture.R;
 
 public class WelcomeActivity extends Activity {
 
