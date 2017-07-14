@@ -13,12 +13,21 @@
         <EditText
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/input_name" />
 
         <EditText
             android:id="@+id/tv_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/input_email"
+            android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/bt_update"
+            android:layout_width="match_parent"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="@string/update" />
     </GridLayout>
 
 </FrameLayout>
