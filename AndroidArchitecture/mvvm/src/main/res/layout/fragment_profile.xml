@@ -1,0 +1,48 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="profile"
+            type="tisoul.dev.mvvm.ProfileViewModel" />
+    </data>
+
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="tisoul.dev.mvvm.ProfileFragment">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:useDefaultMargins="true">
+
+            <EditText
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_name"
+                android:text="@{profile.name}" />
+
+            <EditText
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/input_email"
+                android:inputType="textEmailAddress"
+                android:text="@{profile.email}" />
+
+            <Button
+                android:id="@+id/bt_update"
+                android:layout_width="match_parent"
+                android:layout_gravity="bottom|center_horizontal"
+                android:onClick="@{profile.onUpdateClick}"
+                android:text="@string/update" />
+        </GridLayout>
+
+    </FrameLayout>
+
+</layout>
+
+
