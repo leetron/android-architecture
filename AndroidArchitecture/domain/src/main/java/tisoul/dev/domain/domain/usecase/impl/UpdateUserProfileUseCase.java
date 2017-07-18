@@ -1,6 +1,8 @@
 package tisoul.dev.domain.domain.usecase.impl;
 
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import tisoul.dev.domain.domain.usecase.UpdateUserProfile;
 import tisoul.dev.domain.model.UserProfile;
@@ -9,8 +11,10 @@ import tisoul.dev.domain.repository.model.ResultCallback;
 
 public class UpdateUserProfileUseCase
         implements UpdateUserProfile {
-    ProfileRepository profileRepository;
 
+    private ProfileRepository profileRepository;
+
+    @Inject
     public UpdateUserProfileUseCase(ProfileRepository profileRepository) {
         this.profileRepository = profileRepository;
     }

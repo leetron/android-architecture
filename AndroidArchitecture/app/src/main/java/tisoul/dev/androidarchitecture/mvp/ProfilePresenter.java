@@ -1,6 +1,8 @@
 package tisoul.dev.androidarchitecture.mvp;
 
 
+import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
 import tisoul.dev.domain.domain.usecase.GetUserProfile;
 import tisoul.dev.domain.domain.usecase.UpdateUserProfile;
@@ -16,15 +18,18 @@ public class ProfilePresenter
 
     private final CompositeDisposable disposables;
 
-    public ProfilePresenter(Profile.View view,
-                            GetUserProfile getUserProfile,
+    @Inject
+    public ProfilePresenter(GetUserProfile getUserProfile,
                             UpdateUserProfile updateUserProfile) {
-        this.view = view;
         this.getUserProfile = getUserProfile;
         this.updateUserProfile = updateUserProfile;
 
-        this.view.setPresenter(this);
         disposables = new CompositeDisposable();
+    }
+
+    @Override
+    public void setView(Profile.View view) {
+        this.view = view;
     }
 
     @Override

@@ -3,6 +3,8 @@ package tisoul.dev.androidarchitecture.mvvm;
 
 import android.databinding.ObservableField;
 
+import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
 import tisoul.dev.domain.domain.usecase.GetUserProfile;
 import tisoul.dev.domain.domain.usecase.UpdateUserProfile;
@@ -17,6 +19,7 @@ public class ProfileViewModel {
 
     private CompositeDisposable disposables;
 
+    @Inject
     public ProfileViewModel(GetUserProfile getUserProfile,
                             UpdateUserProfile updateUserProfile) {
         this.getUserProfile = getUserProfile;

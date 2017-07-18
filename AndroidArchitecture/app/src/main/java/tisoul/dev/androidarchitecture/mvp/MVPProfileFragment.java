@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+
+import tisoul.dev.androidarchitecture.ProfileActivity;
 import tisoul.dev.androidarchitecture.R;
 
 public class MVPProfileFragment
@@ -18,7 +21,17 @@ public class MVPProfileFragment
     EditText tvName;
     EditText tvEmail;
 
+    @Inject
     Profile.Presenter presenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setUpInjector();
+
+        presenter.setView(this);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,11 +44,6 @@ public class MVPProfileFragment
         super.onViewCreated(view, savedInstanceState);
 
         setUpView(view);
-    }
-
-    @Override
-    public void setPresenter(Profile.Presenter presenter) {
-        this.presenter = presenter;
     }
 
     @Override
@@ -75,5 +83,11 @@ public class MVPProfileFragment
 
         view.findViewById(R.id.bt_update)
                 .setOnClickListener(this::onUpdateClick);
+    }
+
+    private void setUpInjector() {
+        ((ProfileActivity) getActivity())
+                .profileComponent
+                .inject(this);
     }
 }

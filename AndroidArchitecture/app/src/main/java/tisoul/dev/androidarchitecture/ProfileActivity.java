@@ -4,19 +4,18 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
+import tisoul.dev.androidarchitecture.di.component.DaggerProfileComponent;
+import tisoul.dev.androidarchitecture.di.component.ProfileComponent;
 import tisoul.dev.androidarchitecture.mvp.MVPProfileFragment;
-import tisoul.dev.androidarchitecture.mvp.ProfilePresenter;
 import tisoul.dev.androidarchitecture.mvvm.MVVMProfileFragment;
-import tisoul.dev.androidarchitecture.mvvm.ProfileViewModel;
-import tisoul.dev.data.repository.ProfileRepositoryImpl;
-import tisoul.dev.domain.domain.usecase.impl.GetUserProfileUseCase;
-import tisoul.dev.domain.domain.usecase.impl.UpdateUserProfileUseCase;
 
 public class ProfileActivity extends Activity {
 
     public static final String MODEL_TYPE = "model_type";
 
     String type;
+
+    public ProfileComponent profileComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,32 +24,24 @@ public class ProfileActivity extends Activity {
 
         type = getIntent().getStringExtra(MODEL_TYPE);
 
+        profileComponent = getComponent();
+
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         if ("mvp".equals(type)) {
-            MVPProfileFragment fragment = new MVPProfileFragment();
-            transaction.replace(R.id.frag_contain, fragment);
-            transaction.commit();
-
-            new ProfilePresenter(
-                    fragment,
-                    new GetUserProfileUseCase(
-                            ProfileRepositoryImpl.getInstance()),
-                    new UpdateUserProfileUseCase(
-                            ProfileRepositoryImpl.getInstance()));
+            transaction.replace(R.id.frag_contain, new MVPProfileFragment());
         } else if ("mvvm".equals(type)) {
-            MVVMProfileFragment fragment = new MVVMProfileFragment();
-            transaction.replace(R.id.frag_contain, fragment);
-            transaction.commit();
-
-            fragment
-                    .setViewModel(
-                            new ProfileViewModel(
-                                    new GetUserProfileUseCase(
-                                            ProfileRepositoryImpl.getInstance()),
-                                    new UpdateUserProfileUseCase(
-                                            ProfileRepositoryImpl.getInstance())));
+            transaction.replace(R.id.frag_contain, new MVVMProfileFragment());
         }
+
+        transaction.commit();
     }
 
+    private ProfileComponent getComponent() {
+        return DaggerProfileComponent
+                .builder()
+                .applicationComponent(((AppApplication) getApplication())
+                        .getApplicationComponent())
+                .build();
+    }
 }

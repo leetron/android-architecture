@@ -14,16 +14,27 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewAfterTextChangeEvent;
 
+import javax.inject.Inject;
+
 import tisoul.dev.androidarchitecture.BR;
+import tisoul.dev.androidarchitecture.ProfileActivity;
 import tisoul.dev.androidarchitecture.R;
 import tisoul.dev.androidarchitecture.databinding.FragmentProfileMvvmBinding;
 
 public class MVVMProfileFragment
         extends Fragment {
 
+    @Inject
     ProfileViewModel viewModel;
 
     FragmentProfileMvvmBinding dataBinding;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setUpInjector();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,15 +83,17 @@ public class MVVMProfileFragment
         dataBinding.unbind();
     }
 
-    public void setViewModel(ProfileViewModel viewModel) {
-        this.viewModel = viewModel;
-    }
-
-    private io.reactivex.Observable<String> getDataStream(TextView view){
+    private io.reactivex.Observable<String> getDataStream(TextView view) {
         return RxTextView
                 .afterTextChangeEvents(view)
                 .skipInitialValue()
                 .map(TextViewAfterTextChangeEvent::editable)
                 .map(Editable::toString);
+    }
+
+    private void setUpInjector() {
+        ((ProfileActivity) getActivity())
+                .profileComponent
+                .inject(this);
     }
 }
