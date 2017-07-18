@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">clean rxjava</string>
+
+    <string name="input_name">Input name</string>
+    <string name="input_email">Input email</string>
+    <string name="update">Update</string>
+</resources>

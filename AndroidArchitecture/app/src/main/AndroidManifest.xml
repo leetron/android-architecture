@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="tisoul.dev.mvp.ProfileActivity"/>
+        <activity android:name="tisoul.dev.androidarchitecture.ProfileActivity"/>
+
     </application>
 
 </manifest>

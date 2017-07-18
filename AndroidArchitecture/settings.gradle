@@ -1,1 +1,1 @@
-include ':app', ':mvp', ':data', ':mvvm'
+include ':app', ':data', ':domain'

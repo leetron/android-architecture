@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <GridLayout
+        android:layout_width="368dp"
+        android:layout_height="0dp"
+        android:columnCount="1"
+        android:useDefaultMargins="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/txt_welcome_message" />
+
+        <Button
+            android:id="@+id/bt_mvp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingBottom="@dimen/text_vertical_padding"
+            android:paddingEnd="@dimen/text_horizontal_padding"
+            android:paddingStart="@dimen/text_horizontal_padding"
+            android:paddingTop="@dimen/text_vertical_padding"
+            android:text="@string/mvp" />
+
+        <Button
+            android:id="@+id/bt_mvvm"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:paddingBottom="@dimen/text_vertical_padding"
+            android:paddingEnd="@dimen/text_horizontal_padding"
+            android:paddingStart="@dimen/text_horizontal_padding"
+            android:paddingTop="@dimen/text_vertical_padding"
+            android:text="@string/mvvm" />
+    </GridLayout>
 
 </android.support.constraint.ConstraintLayout>
