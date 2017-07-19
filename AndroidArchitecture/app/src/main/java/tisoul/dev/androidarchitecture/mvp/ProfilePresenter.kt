@@ -32,9 +32,7 @@ class ProfilePresenter
                         ) { println("Get Profile error") })
     }
 
-    override fun unSubscribe() {
-        disposables.clear()
-    }
+    override fun unSubscribe() = disposables.clear()
 
     override fun update(name: CharSequence, email: CharSequence) {
         disposables.add(

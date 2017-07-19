@@ -6,8 +6,8 @@ import tisoul.dev.domain.repository.ProfileRepository
 import tisoul.dev.domain.repository.model.ResultCallback
 import javax.inject.Inject
 
-class ProfileDataRepository @Inject
-constructor() : ProfileRepository {
+class ProfileDataRepository
+@Inject constructor() : ProfileRepository {
 
     private var userProfile: UserProfile? = null
 
@@ -15,10 +15,7 @@ constructor() : ProfileRepository {
         this.userProfile = UserProfile("Nguyen Cao Tai", "nguyencaotai@gmail.com")
     }
 
-    override fun getProfile(result: ResultCallback<UserProfile>) {
-        //perform async task here
-        result.onSuccess(userProfile!!)
-    }
+    override fun getProfile(result: ResultCallback<UserProfile>) = result.onSuccess(userProfile!!)
 
     override fun saveProfile(userProfile: UserProfile, resultCallback: ResultCallback<Boolean>) {
         //perform async task here

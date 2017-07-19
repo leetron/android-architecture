@@ -12,17 +12,17 @@ class GetUserProfileUseCase
 @Inject constructor(private val profileRepository: ProfileRepository) : GetUserProfile {
 
     override fun execute(p: Boolean): Observable<UserProfile> = Observable.create<UserProfile> {
-        profileRepository
-                .getProfile(
-                        object : ResultCallback<UserProfile> {
-                            override fun onSuccess(d: UserProfile) {
-                                it.onNext(d)
-                                it.onComplete()
-                            }
+            profileRepository
+                    .getProfile(
+                            object : ResultCallback<UserProfile> {
+                                override fun onSuccess(d: UserProfile) {
+                                    it.onNext(d)
+                                    it.onComplete()
+                                }
 
-                            override fun onError(throwable: Throwable) {
-                                it.onError(throwable)
-                            }
-                        })
-    }
+                                override fun onError(throwable: Throwable) {
+                                    it.onError(throwable)
+                                }
+                            })
+        }
 }

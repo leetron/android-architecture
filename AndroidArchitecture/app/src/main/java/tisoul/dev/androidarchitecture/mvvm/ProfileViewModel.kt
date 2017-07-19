@@ -8,14 +8,15 @@ import tisoul.dev.domain.domain.usecase.UpdateUserProfile
 import tisoul.dev.domain.model.UserProfile
 import javax.inject.Inject
 
-class ProfileViewModel @Inject
-constructor(private val getUserProfile: GetUserProfile,
-            private val updateUserProfile: UpdateUserProfile
-) {
+class ProfileViewModel
+@Inject constructor(
+        private val getUserProfile: GetUserProfile,
+        private val updateUserProfile: UpdateUserProfile) {
+
     val name = ObservableField<CharSequence>()
     val email = ObservableField<CharSequence>()
 
-    private var disposables: CompositeDisposable = null!!
+    private val disposables: CompositeDisposable = CompositeDisposable()
 
     fun subscribe() {
         disposables.add(

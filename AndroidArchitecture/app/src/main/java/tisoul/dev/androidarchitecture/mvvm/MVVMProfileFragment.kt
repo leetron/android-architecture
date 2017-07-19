@@ -30,7 +30,7 @@ class MVVMProfileFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle): View? {
+                              savedInstanceState: Bundle?): View? {
         dataBinding = DataBindingUtil
                 .inflate<FragmentProfileMvvmBinding>(
                         inflater,
@@ -71,17 +71,13 @@ class MVVMProfileFragment : Fragment() {
         dataBinding?.unbind()
     }
 
-    private fun getDataStream(view: EditText): io.reactivex.Observable<String> {
-        return RxTextView
-                .afterTextChangeEvents(view)
-                .skipInitialValue()
-                .map { it.view().editableText }
-                .map(Editable::toString)
-    }
+    private fun getDataStream(view: EditText): io.reactivex.Observable<String> = RxTextView
+            .afterTextChangeEvents(view)
+            .skipInitialValue()
+            .map { it.view().editableText }
+            .map(Editable::toString)
 
-    private fun setUpInjector() {
-        (activity as ProfileActivity)
-                .profileComponent!!
-                .inject(this)
-    }
+    private fun setUpInjector() = (activity as ProfileActivity)
+            .profileComponent!!
+            .inject(this)
 }

@@ -11,7 +11,8 @@ import tisoul.dev.androidarchitecture.ProfileActivity
 import tisoul.dev.androidarchitecture.R
 import javax.inject.Inject
 
-class MVPProfileFragment : Fragment(), Profile.View {
+class MVPProfileFragment : Fragment()
+        , Profile.View {
 
     internal var tvName: EditText? = null
     internal var tvEmail: EditText? = null
@@ -28,7 +29,7 @@ class MVPProfileFragment : Fragment(), Profile.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle): View? {
+                              savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile_mvp, container, false)
     }
 
