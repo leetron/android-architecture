@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import tisoul.dev.androidarchitecture.ProfileActivity
 import tisoul.dev.androidarchitecture.R
+import tisoul.dev.androidarchitecture.commons.inflate
 import javax.inject.Inject
 
 class MVPProfileFragment : Fragment()
@@ -30,7 +31,7 @@ class MVPProfileFragment : Fragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_profile_mvp, container, false)
+        return container?.inflate(R.layout.fragment_profile_mvp)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

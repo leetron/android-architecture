@@ -1,13 +1,14 @@
 package tisoul.dev.data.repository
 
 
+import io.reactivex.Observable
 import tisoul.dev.domain.model.UserProfile
 import tisoul.dev.domain.repository.ProfileRepository
-import tisoul.dev.domain.repository.model.ResultCallback
 import javax.inject.Inject
 
 class ProfileDataRepository
-@Inject constructor() : ProfileRepository {
+@Inject constructor()
+    : ProfileRepository {
 
     private var userProfile: UserProfile? = null
 
@@ -15,11 +16,11 @@ class ProfileDataRepository
         this.userProfile = UserProfile("Nguyen Cao Tai", "nguyencaotai@gmail.com")
     }
 
-    override fun getProfile(result: ResultCallback<UserProfile>) = result.onSuccess(userProfile!!)
+    override fun getProfile(): Observable<UserProfile>
+            = Observable.just(userProfile!!)
 
-    override fun saveProfile(userProfile: UserProfile, resultCallback: ResultCallback<Boolean>) {
-        //perform async task here
+    override fun saveProfile(userProfile: UserProfile): Observable<UserProfile> {
         this.userProfile = userProfile
-        resultCallback.onSuccess(true)
+        return Observable.just(this.userProfile)
     }
 }

@@ -13,7 +13,7 @@ class ProfilePresenter
         private val updateUserProfile: UpdateUserProfile)
     : Profile.Presenter {
 
-    private var view: Profile.View? = null
+    private lateinit var view: Profile.View
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
@@ -26,10 +26,9 @@ class ProfilePresenter
                 getUserProfile
                         .execute(false)
                         .subscribe({
-                            view!!.setName(it.name)
-                            view!!.setEmail(it.email)
-                        }
-                        ) { println("Get Profile error") })
+                            view.setName(it.name)
+                            view.setEmail(it.email)
+                        }) { println("Get Profile error") })
     }
 
     override fun unSubscribe() = disposables.clear()
@@ -42,7 +41,8 @@ class ProfilePresenter
                                         name,
                                         email))
                         .subscribe(
-                                { println("Update success") }
-                        ) { println("Update error") })
+                                { println("success") },
+                                { print("error") }
+                        ))
     }
 }
